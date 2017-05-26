@@ -11,8 +11,18 @@ import Foundation
 
 class NetworkCall {
     
+    var weatherResponse = Dictionary<String, AnyObject>()
+    
     let weatherURL = "http://api.openweathermap.org/data/2.5/weather?q="
     let apiKey     = "7b61f99ff9408f37b1db091d9ed1b3ac"
+    
+    
+    func networkCallMainFunction(cityNameFromView: String) -> Dictionary<String, AnyObject> {
+        
+        self.getWeather(cityName: cityNameFromView)
+        
+        return self.weatherResponse
+    }
     
     func getWeather(cityName: String) {
         
@@ -24,14 +34,22 @@ class NetworkCall {
         let datatask = session.dataTask(with: urlRequest, completionHandler: {(data, response, error) -> Void in
             
             if let json = data {
-                let dataStr = String(data: json, encoding: String.Encoding.utf8) as String!
-                print("\n\(String(describing: dataStr))")
+//                let dataStr = String(data: json, encoding: String.Encoding.utf8) as String!
+//                print("\n\(String(describing: dataStr))")
+                
+                do {
+                    self.weatherResponse = try JSONSerialization.jsonObject(with: json, options: []) as! [String: AnyObject]
+                    print(self.weatherResponse)
+                    print("Temperature: \(self.weatherResponse["main"]!["temp"]!!)")
+                }
+                catch let jsonError as NSError {
+                    print("JSON error description: \(jsonError.description)")
+                }
             }
             else {
                 print(String(describing: error?.localizedDescription))
             }
         })
         datatask.resume()
-        
     }
 }
