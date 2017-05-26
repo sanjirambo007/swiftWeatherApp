@@ -26,10 +26,11 @@ class NetworkCall {
     
     func getWeather(cityName: String) {
         
-        let session = URLSession.shared
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self as? URLSessionDelegate, delegateQueue: nil )
         let weatherCompleteURL = "\(weatherURL)\(cityName)&APPID=\(apiKey)"
         let urlName = URL.init(string: weatherCompleteURL)
-        let urlRequest = URLRequest.init(url: urlName!)
+        var urlRequest = URLRequest.init(url: urlName!)
+        urlRequest.httpMethod = "GET"
         
         let datatask = session.dataTask(with: urlRequest, completionHandler: {(data, response, error) -> Void in
             
