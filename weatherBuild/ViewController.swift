@@ -12,7 +12,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let weather = NetworkCall();
+        weather.getWeather(cityName: "Vizag")
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

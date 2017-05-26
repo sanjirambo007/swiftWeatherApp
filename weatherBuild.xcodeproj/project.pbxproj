@@ -15,6 +15,7 @@
 		7240D79B1ED828DB00EEC9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7240D7991ED828DB00EEC9E7 /* LaunchScreen.storyboard */; };
 		7240D7A61ED828DC00EEC9E7 /* weatherBuildTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7240D7A51ED828DC00EEC9E7 /* weatherBuildTests.swift */; };
 		7240D7B11ED828DC00EEC9E7 /* weatherBuildUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7240D7B01ED828DC00EEC9E7 /* weatherBuildUITests.swift */; };
+		7240D7BF1ED8309700EEC9E7 /* NetworkCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7240D7BE1ED8309700EEC9E7 /* NetworkCall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		7240D7AC1ED828DC00EEC9E7 /* weatherBuildUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weatherBuildUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7240D7B01ED828DC00EEC9E7 /* weatherBuildUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherBuildUITests.swift; sourceTree = "<group>"; };
 		7240D7B21ED828DC00EEC9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7240D7BE1ED8309700EEC9E7 /* NetworkCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				7240D78D1ED828DA00EEC9E7 /* AppDelegate.swift */,
 				7240D78F1ED828DA00EEC9E7 /* ViewController.swift */,
+				7240D7BE1ED8309700EEC9E7 /* NetworkCall.swift */,
 				7240D7911ED828DB00EEC9E7 /* Main.storyboard */,
 				7240D7971ED828DB00EEC9E7 /* Assets.xcassets */,
 				7240D7991ED828DB00EEC9E7 /* LaunchScreen.storyboard */,
@@ -267,6 +270,7 @@
 			files = (
 				7240D7961ED828DB00EEC9E7 /* weatherBuild.xcdatamodeld in Sources */,
 				7240D7901ED828DA00EEC9E7 /* ViewController.swift in Sources */,
+				7240D7BF1ED8309700EEC9E7 /* NetworkCall.swift in Sources */,
 				7240D78E1ED828DA00EEC9E7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
