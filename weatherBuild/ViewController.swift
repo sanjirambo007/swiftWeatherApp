@@ -24,13 +24,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let weather = NetworkCall();
-        var weatherDict = weather.networkCallMainFunction(cityNameFromView: "Vizag")
-
-//        print("Temperature: \(weatherDict["main"]!["temp"]!!)")
-//        
-//        let tempFahrenheitStr  = (weatherDict["main"]!["temp"]!!) as! String
-//        tempFahrenheit = Int(tempFahrenheitStr)!
-//        lblTempetaureDisplay.text = String(describing: tempFahrenheit)
+       
+        weather.getWeather(cityName: "Hyd"){ (response) in
+            
+            var weatherDict = response as! Dictionary <String, AnyObject>
+            print("Temperature: \(weatherDict["main"]!["temp"]!!)")
+            let tempFahrenheitStr  = (weatherDict["main"]!["temp"]!!) as! String
+            self.tempFahrenheit = Int(tempFahrenheitStr)!
+            self.lblTempetaureDisplay.text = String(describing: self.tempFahrenheit)
+            }
+        
+//        var weatherDict = weather.networkCallMainFunction(cityNameFromView: "Vizag")
         
         _ = UITapGestureRecognizer(target: lblTempetaureDisplay, action: #selector(handleLblTap))
         

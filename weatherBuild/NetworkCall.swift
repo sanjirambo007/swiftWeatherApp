@@ -17,14 +17,17 @@ class NetworkCall {
     let apiKey     = "7b61f99ff9408f37b1db091d9ed1b3ac"
     
     
-    func networkCallMainFunction(cityNameFromView: String) -> Dictionary<String, AnyObject> {
-        
-        self.getWeather(cityName: cityNameFromView)
-        
-        return self.weatherResponse
-    }
+//    func networkCallMainFunction(cityNameFromView: String) -> Dictionary<String, AnyObject> {
+//        
+//        self.getWeather(cityName: cityNameFromView, completion: {
+//            String in
+//            return self.weatherResponse
+//        })
+//        return self.weatherResponse
+//    }
+// 
     
-    func getWeather(cityName: String) {
+    func getWeather(cityName: String,completion: @escaping(Any) -> Void) {
         
         let session = URLSession(configuration: URLSessionConfiguration.default, delegate: self as? URLSessionDelegate, delegateQueue: nil )
         let weatherCompleteURL = "\(weatherURL)\(cityName)&APPID=\(apiKey)"
@@ -42,6 +45,7 @@ class NetworkCall {
                     self.weatherResponse = try JSONSerialization.jsonObject(with: json, options: []) as! [String: AnyObject]
                     print(self.weatherResponse)
                     print("Temperature: \(self.weatherResponse["main"]!["temp"]!!)")
+                    completion(self.weatherResponse)
                 }
                 catch let jsonError as NSError {
                     print("JSON error description: \(jsonError.description)")
