@@ -29,7 +29,8 @@ class ViewController: UIViewController {
             
             var weatherDict = response as! Dictionary <String, AnyObject>
             print("Temperature: \(weatherDict["main"]!["temp"]!!)")
-            let tempFahrenheitStr  = (weatherDict["main"]!["temp"]!!) as! String
+            let tempFahrenheitStrAny  = (weatherDict["main"]!["temp"]!!)
+            let tempFahrenheitStr = String(describing: tempFahrenheitStrAny)
             self.tempFahrenheit = Int(tempFahrenheitStr)!
             self.lblTempetaureDisplay.text = String(describing: self.tempFahrenheit)
             }
