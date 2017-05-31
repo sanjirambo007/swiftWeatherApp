@@ -13,31 +13,23 @@ class ViewController: UIViewController {
     @IBOutlet var lblTempetaureDisplay: UILabel!
     @IBOutlet var lblCorF: UILabel!
     @IBOutlet var imgViewIconDisplay: UIImageView!
+    @IBOutlet var cityTextField: UITextField!
     
     
     
     var checkTempFandC = "F"
-    var tempFahrenheit = Int()
-    
+    var tempFahrenheit = Double()
+    let weather = NetworkCall();
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let weather = NetworkCall();
-       
-        weather.getWeather(cityName: "Hyd"){ (response) in
-            
-            var weatherDict = response as! Dictionary <String, AnyObject>
-            print("Temperature: \(weatherDict["main"]!["temp"]!!)")
-            let tempFahrenheitStrAny  = (weatherDict["main"]!["temp"]!!)
-            let tempFahrenheitStr = String(describing: tempFahrenheitStrAny)
-            self.tempFahrenheit = Int(tempFahrenheitStr)!
-            self.lblTempetaureDisplay.text = String(describing: self.tempFahrenheit)
-            }
+//        let tapLbl = UITapGestureRecognizer(target: lblTempetaureDisplay, action: <#T##Selector?#>)
         
-//        var weatherDict = weather.networkCallMainFunction(cityNameFromView: "Vizag")
-        
-        _ = UITapGestureRecognizer(target: lblTempetaureDisplay, action: #selector(handleLblTap))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleLblTap(sender:)))
+//        tap.numberOfTapsRequired = 1
+//        tap.delegate = self as? UIGestureRecognizerDelegate
+        lblTempetaureDisplay.addGestureRecognizer(tap)
         
     }
 
@@ -48,19 +40,38 @@ class ViewController: UIViewController {
     
     func handleLblTap(sender: UITapGestureRecognizer) {
         if checkTempFandC == "F" {
-            self.lblTempetaureDisplay.text = String((Double(tempFahrenheit) - 32) * 0.5556)
-            tempFahrenheit = Int((Double(tempFahrenheit) - 32) * 0.5556)
+            tempFahrenheit = (tempFahrenheit - 32) * 0.5556
+            self.lblTempetaureDisplay.text = String(format: "%.1f", tempFahrenheit)
             self.lblCorF.text = "°C"
             checkTempFandC = "C"
         } else {
-            self.lblTempetaureDisplay.text = String((Double(tempFahrenheit) * 1.8) + 32)
-            tempFahrenheit = Int((Double(tempFahrenheit) * 1.8) + 32)
+            tempFahrenheit = (tempFahrenheit * 1.8) + 32
+            self.lblTempetaureDisplay.text = String(format: "%.1f", tempFahrenheit)
             self.lblCorF.text = "°F"
             checkTempFandC = "F"
         }
     }
-
-    @IBOutlet var btnGetCurrentWeather: UIButton!
-
+    
+    
+    @IBAction func getWeatherBtnAction(_ sender: UIButton) {
+        
+        if let cityNameTxtField = self.cityTextField.text {
+            
+            weather.getWeather(cityName: cityNameTxtField){ (response) in
+                
+                var weatherDict = response as! Dictionary <String, AnyObject>
+                //    print("Temperature: \(weatherDict["main"]!["temp"]!!)")
+                let tempFahrenheitStrAny  = (weatherDict["main"]!["temp"]!!)
+                var tempFahrenheitStr = tempFahrenheitStrAny as! Double
+                tempFahrenheitStr = Double(round(10*tempFahrenheitStr)/10)
+                self.tempFahrenheit = tempFahrenheitStr
+                
+                DispatchQueue.main.async {
+                    self.lblTempetaureDisplay.text = tempFahrenheitStr.description
+                    self.lblCorF.text = "°F"
+                }
+            }
+        }
+    }
 }
 

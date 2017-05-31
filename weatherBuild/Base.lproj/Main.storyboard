@@ -66,8 +66,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Get Weather!"/>
+                                <connections>
+                                    <action selector="getWeatherBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YpH-na-JRd"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFX-XV-VTS">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFX-XV-VTS">
                                 <rect key="frame" x="297" y="46" width="42" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
@@ -78,7 +81,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="btnGetCurrentWeather" destination="z0p-hq-pez" id="mJb-fo-AN6"/>
+                        <outlet property="cityTextField" destination="nog-Et-yJF" id="D5v-9n-gBb"/>
                         <outlet property="imgViewIconDisplay" destination="xID-uV-ul5" id="lfC-uA-hfe"/>
                         <outlet property="lblCorF" destination="uFX-XV-VTS" id="6pq-yX-2dr"/>
                         <outlet property="lblTempetaureDisplay" destination="sqC-gP-gg3" id="4GF-ni-BNd"/>
